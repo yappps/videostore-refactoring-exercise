@@ -36,6 +36,15 @@ function qualifiedForBonusPoint(movies, rental) {
   return getMovie(movies, rental).code === "new" && rental.days > 2;
 }
 
+function getTotalBill(customer, movies) {
+  let totalBill = 0;
+  for (let rental of customer.rentals) {
+    const bill = billForRental(movies, rental);
+    totalBill += bill;
+  }
+  return totalBill;
+}
+
 function statement(customer, movies) {
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of customer.rentals) {
@@ -43,11 +52,7 @@ function statement(customer, movies) {
     result += printBillForRental(movies, rental, bill);
   }
 
-  let totalBill = 0;
-  for (let rental of customer.rentals) {
-    const bill = billForRental(movies, rental);
-    totalBill += bill;
-  }
+  const totalBill = getTotalBill(customer, movies);
 
   let frequentRenterPoints = 0;
   for (let rental of customer.rentals) {
