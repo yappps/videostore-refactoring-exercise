@@ -29,13 +29,17 @@ export function billForRental(movies, r) {
 }
 
 function statement(customer, movies) {
-  let totalBill = 0;
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of customer.rentals) {
     const bill = billForRental(movies, rental);
 
     //print figures for this rental
     result += `\t${getMovie(movies, rental).title}\t${bill}\n`;
+  }
+
+  let totalBill = 0;
+  for (let rental of customer.rentals) {
+    const bill = billForRental(movies, rental);
     totalBill += bill;
   }
 
