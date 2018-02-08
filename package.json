@@ -1,0 +1,36 @@
+{
+  "name": "temp-es6",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "babel-node --presets env app.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "~1.6.1",
+    "babel-core": "~6.26.0",
+    "babel-jest": "~22.1.0",
+    "babel-register": "^6.26.0",
+    "eslint": "~4.16.0",
+    "eslint-config-prettier": "~2.9.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-jest": "~21.7.0",
+    "eslint-plugin-prettier": "~2.5.0",
+    "jest": "~22.1.4",
+    "prettier": "~1.10.2",
+    "sinon": "~4.2.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "sourceMaps": true,
+    "retainLines": true
+  }
+}
