@@ -2,28 +2,28 @@ function getMovie(movies, rental) {
   return movies[rental.movieID];
 }
 
-export function billForRental(movies, r) {
+export function billForRental(movies, rental) {
   let thisAmount = 0;
 
   // determine amount for each movie
-  switch (getMovie(movies, r).code) {
+  switch (getMovie(movies, rental).code) {
     case "regular":
       thisAmount = 2;
-      if (r.days > 2) {
-        thisAmount += (r.days - 2) * 1.5;
+      if (rental.days > 2) {
+        thisAmount += (rental.days - 2) * 1.5;
       }
       break;
     case "new":
-      thisAmount = r.days * 3;
+      thisAmount = rental.days * 3;
       break;
     case "children":
       thisAmount = 1.5;
-      if (r.days > 3) {
-        thisAmount += (r.days - 3) * 1.5;
+      if (rental.days > 3) {
+        thisAmount += (rental.days - 3) * 1.5;
       }
       break;
     default:
-      throw new Error("Invalid move type:" + getMovie(movies, r).code);
+      throw new Error("Invalid move type:" + getMovie(movies, rental).code);
   }
   return thisAmount;
 }
