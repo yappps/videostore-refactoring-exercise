@@ -32,6 +32,10 @@ function printBillForRental(movies, rental, bill) {
   return `\t${getMovie(movies, rental).title}\t${bill}\n`;
 }
 
+function qualifiedForBonusPoint(movies, rental) {
+  return getMovie(movies, rental).code === "new" && rental.days > 2;
+}
+
 function statement(customer, movies) {
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of customer.rentals) {
@@ -47,11 +51,9 @@ function statement(customer, movies) {
 
   let frequentRenterPoints = 0;
   for (let rental of customer.rentals) {
-    //add frequent renter points
     frequentRenterPoints++;
     // add bonus for a two day new release rental
-    if (getMovie(movies, rental).code === "new" && rental.days > 2)
-      frequentRenterPoints++;
+    if (qualifiedForBonusPoint(movies, rental)) frequentRenterPoints++;
   }
 
   // add footer lines
