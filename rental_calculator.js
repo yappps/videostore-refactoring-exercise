@@ -33,7 +33,7 @@ function statement(customer, movies) {
   let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
   for (let r of customer.rentals) {
-    let bill = billForRental(movies, r);
+    const bill = billForRental(movies, r);
 
     //add frequent renter points
     frequentRenterPoints++;
