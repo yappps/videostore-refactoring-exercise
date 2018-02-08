@@ -30,7 +30,6 @@ export function billForRental(movies, r) {
 
 function statement(customer, movies) {
   let totalBill = 0;
-  let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of customer.rentals) {
     const bill = billForRental(movies, rental);
@@ -40,6 +39,7 @@ function statement(customer, movies) {
     totalBill += bill;
   }
 
+  let frequentRenterPoints = 0;
   for (let rental of customer.rentals) {
     //add frequent renter points
     frequentRenterPoints++;
