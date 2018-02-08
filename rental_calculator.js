@@ -52,7 +52,6 @@ function statement(customer, movies) {
   let frequentRenterPoints = 0;
   for (let rental of customer.rentals) {
     frequentRenterPoints++;
-    // add bonus for a two day new release rental
     if (qualifiedForBonusPoint(movies, rental)) frequentRenterPoints++;
   }
 
