@@ -29,7 +29,7 @@ export function billForRental(movies, r) {
 }
 
 function statement(customer, movies) {
-  let totalAmount = 0;
+  let totalBill = 0;
   let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
   for (let r of customer.rentals) {
@@ -43,10 +43,10 @@ function statement(customer, movies) {
 
     //print figures for this rental
     result += `\t${getMovie(movies, r).title}\t${bill}\n`;
-    totalAmount += bill;
+    totalBill += bill;
   }
   // add footer lines
-  result += `Amount owed is ${totalAmount}\n`;
+  result += `Amount owed is ${totalBill}\n`;
   result += `You earned ${frequentRenterPoints} frequent renter points\n`;
 
   return result;
