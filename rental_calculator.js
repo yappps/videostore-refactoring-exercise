@@ -28,13 +28,15 @@ export function billForRental(movies, r) {
   return thisAmount;
 }
 
+function printBillForRental(movies, rental, bill) {
+  return `\t${getMovie(movies, rental).title}\t${bill}\n`;
+}
+
 function statement(customer, movies) {
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of customer.rentals) {
     const bill = billForRental(movies, rental);
-
-    //print figures for this rental
-    result += `\t${getMovie(movies, rental).title}\t${bill}\n`;
+    result += printBillForRental(movies, rental, bill);
   }
 
   let totalBill = 0;
