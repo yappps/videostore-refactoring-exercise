@@ -35,16 +35,19 @@ function statement(customer, movies) {
   for (let rental of customer.rentals) {
     const bill = billForRental(movies, rental);
 
+    //print figures for this rental
+    result += `\t${getMovie(movies, rental).title}\t${bill}\n`;
+    totalBill += bill;
+  }
+
+  for (let rental of customer.rentals) {
     //add frequent renter points
     frequentRenterPoints++;
     // add bonus for a two day new release rental
     if (getMovie(movies, rental).code === "new" && rental.days > 2)
       frequentRenterPoints++;
-
-    //print figures for this rental
-    result += `\t${getMovie(movies, rental).title}\t${bill}\n`;
-    totalBill += bill;
   }
+
   // add footer lines
   result += `Amount owed is ${totalBill}\n`;
   result += `You earned ${frequentRenterPoints} frequent renter points\n`;
