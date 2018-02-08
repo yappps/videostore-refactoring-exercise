@@ -17,12 +17,14 @@ export function statement(customer, movies) {
       case "new":
         thisAmount = r.days * 3;
         break;
-      case "childrens":
+      case "children":
         thisAmount = 1.5;
         if (r.days > 3) {
           thisAmount += (r.days - 3) * 1.5;
         }
         break;
+      default:
+        throw new Error("Invalid move type:" + movie.code);
     }
 
     //add frequent renter points

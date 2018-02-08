@@ -7,7 +7,7 @@ const regularMovie = {
 
 const childrenMovie = {
   movieID: "F002",
-  details: { title: "Harry Potter", code: "childrens" }
+  details: { title: "Harry Potter", code: "children" }
 };
 
 const newMovie = {
@@ -58,7 +58,7 @@ describe("Moive Rental Application", () => {
     expect(statement(customer, movies)).toMatch(/Star Wars\s+9\n/);
   });
 
-  it("should calculate rental bill for a childrens movie when it's rented for less than or equal to three days", () => {
+  it("should calculate rental bill for a children movie when it's rented for less than or equal to three days", () => {
     let customer = {
       name: "martin",
       rentals: [{ movieID: childrenMovie.movieID, days: 3 }]
@@ -67,7 +67,7 @@ describe("Moive Rental Application", () => {
     expect(statement(customer, movies)).toMatch(/Harry Potter\s+1.5\n/);
   });
 
-  it("should calculate rental bill for a childrens movie when it's rented for more than three days", () => {
+  it("should calculate rental bill for a children movie when it's rented for more than three days", () => {
     let customer = {
       name: "martin",
       rentals: [{ movieID: childrenMovie.movieID, days: 4 }]
