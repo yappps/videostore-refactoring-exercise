@@ -2,7 +2,7 @@ function getMovie(movies, rental) {
   return movies[rental.movieID];
 }
 
-export function billForRental(movies, rental) {
+function billForRental(movies, rental) {
   let thisAmount = 0;
 
   // determine amount for each movie
