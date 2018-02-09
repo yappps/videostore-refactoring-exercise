@@ -1,11 +1,15 @@
 import Customer from "./customer";
+import Rental from "./rental";
 
 export function statement(customer, movies) {
   const c = new Customer({ name: customer.name });
+  const rentals = customer.rentals.map(
+    rental => new Rental({ movie: movies[rental.movieID], days: rental.days })
+  );
   let totalAmount = 0;
   let result = `Rental Record for ${c.name}\n`;
-  for (let r of customer.rentals) {
-    let movie = movies[r.movieID];
+  for (let r of rentals) {
+    let movie = r.movie;
     let thisAmount = 0;
 
     // determine amount for each movie
