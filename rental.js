@@ -29,6 +29,10 @@ class Rental {
     }
     return bill;
   }
+
+  qualifiedForBonusRenterPoints() {
+    return this.movie.code === "new" && this.days > 2;
+  }
 }
 
 export default Rental;

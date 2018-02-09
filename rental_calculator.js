@@ -12,10 +12,8 @@ function statement(customer, movies) {
   for (let r of rentals) {
     let bill = r.getBill();
 
-    //add frequent renter points
     c.incrementRentalPoints();
-    // add bonus for a two day new release rental
-    if (r.movie.code === "new" && r.days > 2) c.incrementRentalPoints();
+    if (r.qualifiedForBonusRenterPoints()) c.incrementRentalPoints();
 
     //print figures for this rental
     result += `\t${r.movie.title}\t${bill}\n`;
