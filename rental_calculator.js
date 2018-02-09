@@ -1,17 +1,23 @@
 import Customer from "./customer";
 import Rental from "./rental";
 
+function getTotalBill(rentals) {
+  let totalBill = 0;
+  for (let r of rentals) {
+    let bill = r.getBill();
+    totalBill += bill;
+  }
+  return totalBill;
+}
+
 function statement(customer, movies) {
   const c = new Customer({ name: customer.name });
   const rentals = customer.rentals.map(
     rental => new Rental({ movie: movies[rental.movieID], days: rental.days })
   );
-  let totalBill = 0;
   let result = `Rental Record for ${c.name}\n`;
-  for (let r of rentals) {
-    let bill = r.getBill();
-    totalBill += bill;
-  }
+
+  const totalBill = getTotalBill(rentals);
 
   for (let r of rentals) {
     let bill = r.getBill();
