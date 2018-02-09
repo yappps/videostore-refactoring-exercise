@@ -24,17 +24,16 @@ function statement(customer, movies) {
   );
   let result = `Rental Record for ${c.name}\n`;
 
-  const totalBill = getTotalBill(rentals);
-
   for (let r of rentals) {
     let bill = r.getBill();
     result += `\t${r.movie.title}\t${bill}\n`;
   }
 
-  incrementRenterPointsForCustomer(rentals, c);
-
   // add footer lines
+  const totalBill = getTotalBill(rentals);
   result += `Amount owed is ${totalBill}\n`;
+
+  incrementRenterPointsForCustomer(rentals, c);
   result += `You earned ${c.frequentRenterPoints} frequent renter points\n`;
 
   return result;
