@@ -7,10 +7,10 @@ function statement(customer, movies) {
   const rentals = customer.rentals.map(
     rental => new Rental({ movie: movies[rental.movieID], days: rental.days })
   );
-  let totalAmount = 0;
+  let totalBill = 0;
   let result = `Rental Record for ${c.name}\n`;
   for (let r of rentals) {
-    let thisAmount = r.getBill();
+    let bill = r.getBill();
 
     //add frequent renter points
     c.incrementRentalPoints();
@@ -18,11 +18,11 @@ function statement(customer, movies) {
     if (r.movie.code === "new" && r.days > 2) c.incrementRentalPoints();
 
     //print figures for this rental
-    result += `\t${r.movie.title}\t${thisAmount}\n`;
-    totalAmount += thisAmount;
+    result += `\t${r.movie.title}\t${bill}\n`;
+    totalBill += bill;
   }
   // add footer lines
-  result += `Amount owed is ${totalAmount}\n`;
+  result += `Amount owed is ${totalBill}\n`;
   result += `You earned ${c.frequentRenterPoints} frequent renter points\n`;
 
   return result;
