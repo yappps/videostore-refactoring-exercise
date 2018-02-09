@@ -9,11 +9,10 @@ export function statement(customer, movies) {
   let totalAmount = 0;
   let result = `Rental Record for ${c.name}\n`;
   for (let r of rentals) {
-    let movie = r.movie;
     let thisAmount = 0;
 
     // determine amount for each movie
-    switch (movie.code) {
+    switch (r.movie.code) {
       case "regular":
         thisAmount = 2;
         if (r.days > 2) {
@@ -30,16 +29,16 @@ export function statement(customer, movies) {
         }
         break;
       default:
-        throw new Error("Invalid move type:" + movie.code);
+        throw new Error("Invalid move type:" + r.movie.code);
     }
 
     //add frequent renter points
     c.incrementRentalPoints();
     // add bonus for a two day new release rental
-    if (movie.code === "new" && r.days > 2) c.incrementRentalPoints();
+    if (r.movie.code === "new" && r.days > 2) c.incrementRentalPoints();
 
     //print figures for this rental
-    result += `\t${movie.title}\t${thisAmount}\n`;
+    result += `\t${r.movie.title}\t${thisAmount}\n`;
     totalAmount += thisAmount;
   }
   // add footer lines
