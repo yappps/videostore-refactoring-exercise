@@ -1,7 +1,9 @@
+import Customer from "./customer";
+
 export function statement(customer, movies) {
+  const c = new Customer({ name: customer.name });
   let totalAmount = 0;
-  let frequentRenterPoints = 0;
-  let result = `Rental Record for ${customer.name}\n`;
+  let result = `Rental Record for ${c.name}\n`;
   for (let r of customer.rentals) {
     let movie = movies[r.movieID];
     let thisAmount = 0;
@@ -28,9 +30,9 @@ export function statement(customer, movies) {
     }
 
     //add frequent renter points
-    frequentRenterPoints++;
+    c.incrementRentalPoints();
     // add bonus for a two day new release rental
-    if (movie.code === "new" && r.days > 2) frequentRenterPoints++;
+    if (movie.code === "new" && r.days > 2) c.incrementRentalPoints();
 
     //print figures for this rental
     result += `\t${movie.title}\t${thisAmount}\n`;
@@ -38,7 +40,7 @@ export function statement(customer, movies) {
   }
   // add footer lines
   result += `Amount owed is ${totalAmount}\n`;
-  result += `You earned ${frequentRenterPoints} frequent renter points\n`;
+  result += `You earned ${c.frequentRenterPoints} frequent renter points\n`;
 
   return result;
 }
