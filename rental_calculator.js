@@ -2,12 +2,8 @@ import Customer from "./customer";
 import Rental from "./rental";
 
 function getTotalBill(rentals) {
-  let totalBill = 0;
-  for (let r of rentals) {
-    let bill = r.getBill();
-    totalBill += bill;
-  }
-  return totalBill;
+  const sum = (a, b) => a + b;
+  return rentals.map(r => r.getBill()).reduce(sum, 0);
 }
 
 function incrementRenterPointsForCustomer(rentals, c) {
