@@ -1,31 +1,6 @@
 import Customer from "./customer";
 import Rental from "./rental";
 
-function getBillForRental(r) {
-  let bill = 0;
-
-  // determine amount for each movie
-  switch (r.movie.code) {
-    case "regular":
-      bill = 2;
-      if (r.days > 2) {
-        bill += (r.days - 2) * 1.5;
-      }
-      break;
-    case "new":
-      bill = r.days * 3;
-      break;
-    case "children":
-      bill = 1.5;
-      if (r.days > 3) {
-        bill += (r.days - 3) * 1.5;
-      }
-      break;
-    default:
-      throw new Error("Invalid move type:" + r.movie.code);
-  }
-  return bill;
-}
 
 function statement(customer, movies) {
   const c = new Customer({ name: customer.name });
@@ -35,7 +10,7 @@ function statement(customer, movies) {
   let totalAmount = 0;
   let result = `Rental Record for ${c.name}\n`;
   for (let r of rentals) {
-    let thisAmount = getBillForRental(r);
+    let thisAmount = r.getBill();
 
     //add frequent renter points
     c.incrementRentalPoints();
