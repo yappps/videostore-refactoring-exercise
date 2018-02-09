@@ -10,6 +10,13 @@ function getTotalBill(rentals) {
   return totalBill;
 }
 
+function incrementRenterPointsForCustomer(rentals, c) {
+  for (let r of rentals) {
+    c.incrementRentalPoints();
+    if (r.qualifiedForBonusRenterPoints()) c.incrementRentalPoints();
+  }
+}
+
 function statement(customer, movies) {
   const c = new Customer({ name: customer.name });
   const rentals = customer.rentals.map(
@@ -24,10 +31,7 @@ function statement(customer, movies) {
     result += `\t${r.movie.title}\t${bill}\n`;
   }
 
-  for (let r of rentals) {
-    c.incrementRentalPoints();
-    if (r.qualifiedForBonusRenterPoints()) c.incrementRentalPoints();
-  }
+  incrementRenterPointsForCustomer(rentals, c);
 
   // add footer lines
   result += `Amount owed is ${totalBill}\n`;
