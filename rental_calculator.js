@@ -1,5 +1,6 @@
 import Customer from "./customer";
 import Rental from "./rental";
+import { createMovie } from "./movie";
 
 function getTotalBill(rentals) {
   const sum = (a, b) => a + b;
@@ -15,9 +16,15 @@ function incrementRenterPointsForCustomer(rentals, c) {
 
 function statement(customer, movies) {
   const c = new Customer({ name: customer.name });
-  const rentals = customer.rentals.map(
-    rental => new Rental({ movie: movies[rental.movieID], days: rental.days })
-  );
+  const rentals = customer.rentals.map(rental => {
+    const movieDetails = movies[rental.movieID];
+    const movie = createMovie({
+      id: rental.movieID,
+      title: movieDetails.title,
+      code: movieDetails.code
+    });
+    return new Rental({ movie: movie, days: rental.days });
+  });
   let result = `Rental Record for ${c.name}\n`;
 
   for (let r of rentals) {
