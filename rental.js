@@ -5,4 +5,4 @@ class Rental {
   }
 }
 
-export default Rental;
+module.exports = Rental;

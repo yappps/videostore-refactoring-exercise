@@ -6,4 +6,4 @@ class Movie {
   }
 }
 
-export default Movie;
+module.exports = Movie;

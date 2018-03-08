@@ -1,4 +1,4 @@
-export function statement(customer, movies) {
+module.exports = function statement(customer, movies) {
   let totalAmount = 0;
   let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
