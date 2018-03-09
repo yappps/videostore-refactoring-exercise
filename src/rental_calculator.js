@@ -5,7 +5,7 @@ module.exports = function statement(customer, movies) {
   for (let r of customer.rentals) {
     let movie = movies[r.movieID];
     let thisAmount = 0;
-
+yar
     // determine amount for each movie
     switch (movie.code) {
       case "regular":

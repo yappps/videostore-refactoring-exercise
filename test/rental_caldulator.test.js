@@ -1,4 +1,4 @@
-const statement = require("./rental_calculator");
+const statement = require("../src/rental_calculator");
 
 const regularMovie = {
   movieID: "F001",
