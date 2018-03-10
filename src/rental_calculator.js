@@ -22,28 +22,9 @@ module.exports = function statement(customerRecord, movies) {
   let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
   for (let rental of rentals) {
-    let movie = movies[rental.movie.id];
+    let movie = rental.movie;
     let thisAmount = 0;
-    // determine amount for each movie
-    switch (movie.code) {
-      case "regular":
-        thisAmount = 2;
-        if (rental.days > 2) {
-          thisAmount += (rental.days - 2) * 1.5;
-        }
-        break;
-      case "new":
-        thisAmount = rental.days * 3;
-        break;
-      case "children":
-        thisAmount = 1.5;
-        if (rental.days > 3) {
-          thisAmount += (rental.days - 3) * 1.5;
-        }
-        break;
-      default:
-        throw new Error("Invalid move type:" + movie.code);
-    }
+
     //add frequent renter points
     frequentRenterPoints++;
     // add bonus for a two day new release rental
